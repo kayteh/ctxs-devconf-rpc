@@ -1,4 +1,4 @@
-module github.com/roleypoly/rpc
+module github.com/kayteh/ctxs-devconf-rpc
 
 go 1.13
 

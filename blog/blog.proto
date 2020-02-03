@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package blog;
+option go_package = "github.com/kayteh/ctxs-devconf-rpc/blog";
+
+import "google/protobuf/empty.proto";
+
+service Blog {
+  rpc ListAllPosts(google.protobuf.Empty) returns (PostList) {}
+  rpc GetPost(PostQuery) returns (Post) {}
+  rpc CreatePost(Post) returns (Post) {}
+  rpc DeletePost(PostQuery) returns (google.protobuf.Empty) {}
+}
+
+message PostList { repeated Post posts = 1; }
+
+message Post {
+  string id = 1;
+  string title = 2;
+  string body = 3;
+}
+
+message PostQuery { string id = 1; }

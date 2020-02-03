@@ -1,62 +1,62 @@
-// package: roleypoly.ctf
-// file: ctf/ctf.proto
+// package: blog
+// file: blog/blog.proto
 
-var ctf_ctf_pb = require("../ctf/ctf_pb");
+var blog_blog_pb = require("../blog/blog_pb");
 var google_protobuf_empty_pb = require("google-protobuf/google/protobuf/empty_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var CTF = (function () {
-  function CTF() {}
-  CTF.serviceName = "roleypoly.ctf.CTF";
-  return CTF;
+var Blog = (function () {
+  function Blog() {}
+  Blog.serviceName = "blog.Blog";
+  return Blog;
 }());
 
-CTF.GetRingFlags = {
-  methodName: "GetRingFlags",
-  service: CTF,
+Blog.ListAllPosts = {
+  methodName: "ListAllPosts",
+  service: Blog,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.Ring,
-  responseType: ctf_ctf_pb.Flags
+  requestType: google_protobuf_empty_pb.Empty,
+  responseType: blog_blog_pb.PostList
 };
 
-CTF.CreateFlag = {
-  methodName: "CreateFlag",
-  service: CTF,
+Blog.GetPost = {
+  methodName: "GetPost",
+  service: Blog,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.Flag,
-  responseType: ctf_ctf_pb.Flag
+  requestType: blog_blog_pb.PostQuery,
+  responseType: blog_blog_pb.Post
 };
 
-CTF.PromoteFlag = {
-  methodName: "PromoteFlag",
-  service: CTF,
+Blog.CreatePost = {
+  methodName: "CreatePost",
+  service: Blog,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.Flag,
-  responseType: ctf_ctf_pb.Flag
+  requestType: blog_blog_pb.Post,
+  responseType: blog_blog_pb.Post
 };
 
-CTF.RemoveFlag = {
-  methodName: "RemoveFlag",
-  service: CTF,
+Blog.DeletePost = {
+  methodName: "DeletePost",
+  service: Blog,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.Flag,
+  requestType: blog_blog_pb.PostQuery,
   responseType: google_protobuf_empty_pb.Empty
 };
 
-exports.CTF = CTF;
+exports.Blog = Blog;
 
-function CTFClient(serviceHost, options) {
+function BlogClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-CTFClient.prototype.getRingFlags = function getRingFlags(requestMessage, metadata) {
+BlogClient.prototype.listAllPosts = function listAllPosts(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.GetRingFlags, {
+    grpc.unary(Blog.ListAllPosts, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -76,9 +76,9 @@ CTFClient.prototype.getRingFlags = function getRingFlags(requestMessage, metadat
   });
 };
 
-CTFClient.prototype.createFlag = function createFlag(requestMessage, metadata) {
+BlogClient.prototype.getPost = function getPost(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.CreateFlag, {
+    grpc.unary(Blog.GetPost, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -98,9 +98,9 @@ CTFClient.prototype.createFlag = function createFlag(requestMessage, metadata) {
   });
 };
 
-CTFClient.prototype.promoteFlag = function promoteFlag(requestMessage, metadata) {
+BlogClient.prototype.createPost = function createPost(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.PromoteFlag, {
+    grpc.unary(Blog.CreatePost, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -120,9 +120,9 @@ CTFClient.prototype.promoteFlag = function promoteFlag(requestMessage, metadata)
   });
 };
 
-CTFClient.prototype.removeFlag = function removeFlag(requestMessage, metadata) {
+BlogClient.prototype.deletePost = function deletePost(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.RemoveFlag, {
+    grpc.unary(Blog.DeletePost, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -142,5 +142,5 @@ CTFClient.prototype.removeFlag = function removeFlag(requestMessage, metadata) {
   });
 };
 
-exports.CTFClient = CTFClient;
+exports.BlogClient = BlogClient;
 

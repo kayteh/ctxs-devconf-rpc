@@ -1,13 +1,13 @@
-# roleypoly rpc
+# Citrix DevConf gRPC Definitions
 
 This package includes automatically generated files based on protobuf definition files. Currently, gRPC Go, gRPC-Web JS and TS definitions exist here. Nothing here is a functional part of an app, just data wiring.
 
 ## Importing
 
-- **Go:** `go get -u github.com/roleypoly/rpc`
-- **JS/TS:** `yarn add @roleypoly/rpc`
+- **Go:** `go get -u github.com/kayteh/ctxs-devconf-rpc`
+- **JS/TS:** `yarn add @kayteh/ctxs-devconf-rpc`
 
-In both cases, you may directly import a sub-directory, e.g. `@roleypoly/rpc/discord` or `github.com/roleypoly/rpc/discord`, which resolves to the generated protobuf file.
+In both cases, you may directly import a sub-directory, e.g. `@kayteh/ctxs-devconf-rpc/blog` or `github.com/kayteh/ctxs-devconf-rpc/blog`, which resolves to the generated protobuf file.
 
 ## Developing
 

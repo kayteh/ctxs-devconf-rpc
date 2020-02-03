@@ -1,9 +1,9 @@
 {
-  "name": "@roleypoly/rpc",
-  "version": "1.5.0",
+  "name": "@kayteh/ctxs-devconf-rpc",
+  "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:roleypoly/rpc.git",
-  "author": "Katie Thornhill <katie@kat.cafe>",
+  "repository": "git@github.com:kayteh/ctxs-devconf-rpc.git",
+  "author": "Katie Thornhill <katie.thornhill@citrix.com>",
   "license": "MIT",
   "private": false,
   "scripts": {

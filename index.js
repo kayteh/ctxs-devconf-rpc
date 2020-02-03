@@ -9,14 +9,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var empty_pb_1 = require("google-protobuf/google/protobuf/empty_pb");
 exports.Empty = empty_pb_1.Empty;
-const AuthClient = __importStar(require("./auth/client"));
-exports.AuthClient = AuthClient;
-const Ctf = __importStar(require("./ctf"));
-exports.Ctf = Ctf;
-const Discord = __importStar(require("./discord"));
-exports.Discord = Discord;
-const Platform = __importStar(require("./platform"));
-exports.Platform = Platform;
-const Shared = __importStar(require("./shared"));
-exports.Shared = Shared;
+const Blog = __importStar(require("./blog"));
+exports.Blog = Blog;
 //# sourceMappingURL=index.js.map

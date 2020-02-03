@@ -1,63 +1,52 @@
-// package: roleypoly.platform
-// file: platform/platform.proto
+// package: blog
+// file: blog/blog.proto
 
-import * as platform_platform_pb from "../platform/platform_pb";
-import * as shared_shared_pb from "../shared/shared_pb";
+import * as blog_blog_pb from "../blog/blog_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type PlatformGetMyGuilds = {
+type BlogListAllPosts = {
   readonly methodName: string;
-  readonly service: typeof Platform;
+  readonly service: typeof Blog;
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof shared_shared_pb.GuildList;
+  readonly responseType: typeof blog_blog_pb.PostList;
 };
 
-type PlatformGetGuild = {
+type BlogGetPost = {
   readonly methodName: string;
-  readonly service: typeof Platform;
+  readonly service: typeof Blog;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof shared_shared_pb.IDQuery;
-  readonly responseType: typeof shared_shared_pb.Guild;
+  readonly requestType: typeof blog_blog_pb.PostQuery;
+  readonly responseType: typeof blog_blog_pb.Post;
 };
 
-type PlatformUpdateGuildData = {
+type BlogCreatePost = {
   readonly methodName: string;
-  readonly service: typeof Platform;
+  readonly service: typeof Blog;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof platform_platform_pb.GuildData;
+  readonly requestType: typeof blog_blog_pb.Post;
+  readonly responseType: typeof blog_blog_pb.Post;
+};
+
+type BlogDeletePost = {
+  readonly methodName: string;
+  readonly service: typeof Blog;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof blog_blog_pb.PostQuery;
   readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
-type PlatformCommitRoles = {
-  readonly methodName: string;
-  readonly service: typeof Platform;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof platform_platform_pb.Roles;
-  readonly responseType: typeof google_protobuf_empty_pb.Empty;
-};
-
-type PlatformSetEntitlement = {
-  readonly methodName: string;
-  readonly service: typeof Platform;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof platform_platform_pb.UpdateEntitlement;
-  readonly responseType: typeof google_protobuf_empty_pb.Empty;
-};
-
-export class Platform {
+export class Blog {
   static readonly serviceName: string;
-  static readonly GetMyGuilds: PlatformGetMyGuilds;
-  static readonly GetGuild: PlatformGetGuild;
-  static readonly UpdateGuildData: PlatformUpdateGuildData;
-  static readonly CommitRoles: PlatformCommitRoles;
-  static readonly SetEntitlement: PlatformSetEntitlement;
+  static readonly ListAllPosts: BlogListAllPosts;
+  static readonly GetPost: BlogGetPost;
+  static readonly CreatePost: BlogCreatePost;
+  static readonly DeletePost: BlogDeletePost;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -88,28 +77,24 @@ interface BidirectionalStream<ReqT, ResT> {
   on(type: 'status', handler: (status: Status) => void): BidirectionalStream<ReqT, ResT>;
 }
 
-export class PlatformClient {
+export class BlogClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getMyGuilds(
+  listAllPosts(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata?: grpc.Metadata,
-  ): Promise<shared_shared_pb.GuildList>;
-  getGuild(
-    requestMessage: shared_shared_pb.IDQuery,
+  ): Promise<blog_blog_pb.PostList>;
+  getPost(
+    requestMessage: blog_blog_pb.PostQuery,
     metadata?: grpc.Metadata,
-  ): Promise<shared_shared_pb.Guild>;
-  updateGuildData(
-    requestMessage: platform_platform_pb.GuildData,
+  ): Promise<blog_blog_pb.Post>;
+  createPost(
+    requestMessage: blog_blog_pb.Post,
     metadata?: grpc.Metadata,
-  ): Promise<google_protobuf_empty_pb.Empty>;
-  commitRoles(
-    requestMessage: platform_platform_pb.Roles,
-    metadata?: grpc.Metadata,
-  ): Promise<google_protobuf_empty_pb.Empty>;
-  setEntitlement(
-    requestMessage: platform_platform_pb.UpdateEntitlement,
+  ): Promise<blog_blog_pb.Post>;
+  deletePost(
+    requestMessage: blog_blog_pb.PostQuery,
     metadata?: grpc.Metadata,
   ): Promise<google_protobuf_empty_pb.Empty>;
 }
